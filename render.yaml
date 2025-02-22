@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: go-to-do-list
+    env: go
+    buildCommand: go build -o main .
+    startCommand: ./main
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: DB_URL
+        value: your_database_url
+    autoDeploy: true    # Auto deploy when you push to GitHub
+    healthCheckPath: /health  # URL path for health checks
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1    # Size of persistent storage
